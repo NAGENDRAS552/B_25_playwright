@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
+  await page.setViewportSize({
+    width:375,
+    height:667,
+  })
   test.setTimeout(120000)
   await page.goto('https://the-internet.herokuapp.com/login');
   await page.getByRole('textbox', { name: 'Username' }).click();
