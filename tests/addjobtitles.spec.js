@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('verify admin can add jodtitles', async ({ page }) => {
-    await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+    await page.goto("/web/index.php/auth/login")
     await page.locator('input[name="username"]').fill("Admin")
     await page.locator("//input[@placeholder='Password']").fill("admin123")
     await page.locator("//button[@type='submit']").click()
