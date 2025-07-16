@@ -11,7 +11,7 @@ test('verify admin can add employees', async ({ page }) =>{
     await page.locator("input[name='firstName']").fill("Nagendra")
     await page.locator("input[name='lastName']").fill("s")
     const r = Math.floor(1000 + Math.random() * 9000).toString();
-    await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill("4"+r)
+    await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill(+r)
     await page.locator("button[type='submit']").click()
     await expect(page.locator("a.orangehrm-tabs-item.--active")).toBeVisible()
      

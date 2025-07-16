@@ -2,14 +2,16 @@ import { test, expect } from '@playwright/test';
 
 import logindata from "../testdata/login.json"
 
+const creds=["Admin","admin123"]
+
 test('verify the login with valid credentials', async ({ page }) => {
 
     await page.goto("/web/index.php/auth/login")
-    await page.locator('input[name="username"]').fill(logindata.username)
-    await page.locator("//input[@placeholder='Password']").fill(logindata.password)
+    await page.locator('input[name="username"]').fill(creds[0])
+    await page.locator("//input[@placeholder='Password']").fill(creds[1])
     await page.locator("//button[@type='submit']").click()
     await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
-    await page.close()
+    //await page.close()
 })
 
 test('verify the login with invalid username and valid password ', async ({ page }) => {
