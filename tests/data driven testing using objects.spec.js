@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+import logindata from "../testdata/login.json";
+import title from "../testdata/admindata/jobtitle.json"
+let jobtitles = {
+    job1: "SDET",
+    job2: "SDLE",
+    job3: "STLC"
+}
+
+
+for (let jobname in jobtitles) {
+
+
+    test(`verify admin can add jod titles using data -${jobtitles[jobname]}`, async ({ page }) => {
+        await page.goto("/web/index.php/auth/login")
+        await page.locator('input[name="username"]').fill(logindata.username)
+        await page.locator("//input[@placeholder='Password']").fill(logindata.password)
+        await page.locator("//button[@type='submit']").click()
+        await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+        await page.locator("//span[text()='Admin']").click()
+        await page.locator("//span[normalize-space(text())='Job']").click()
+        await page.locator("(//a[@role='menuitem'])[1]").click()
+        await page.locator("//button[contains(@class,'oxd-button oxd-button--medium')]").click()
+        let r = (Math.random() + 1).toString(36).substring(7)
+        await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill(jobtitles[jobname] + r)
+        await page.locator("textarea[placeholder='Type description here']").fill(title.jobdescription)
+        await page.locator("button[type='submit']").click()
+        await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList")
+
+    })
+}
+
