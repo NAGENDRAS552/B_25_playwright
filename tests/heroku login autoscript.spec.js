@@ -13,5 +13,5 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Password' }).fill('SuperSecretPassword!');
   await page.getByRole('button', { name: ' Login' }).click();
   await expect(page.getByRole('heading', { name: 'Secure Area', exact: true })).toBeVisible({timeout: 30000});
-  
+  await page.close()
 });

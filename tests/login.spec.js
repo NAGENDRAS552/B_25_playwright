@@ -11,7 +11,7 @@ test('verify the login with valid credentials', async ({ page }) => {
     await page.locator("//input[@placeholder='Password']").fill(creds[1])
     await page.locator("//button[@type='submit']").click()
     await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
-    //await page.close()
+    
 })
 
 test('verify the login with invalid username and valid password ', async ({ page }) => {
