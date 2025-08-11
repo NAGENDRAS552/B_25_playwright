@@ -5,8 +5,8 @@ import { expect } from "@playwright/test";
         this.page=page;
         
     this.UsernameField= page.locator('input[name="username"]')
-    this.PasswordField=page.locator("//input[@placeholder='Password']")
-    this.LoginButton= page.locator("//button[@type='submit']")
+    this.PasswordField=page.locator('input[type="password"]')
+    this.LoginButton= page.locator('button[type="submit"]')
     
     }
 
